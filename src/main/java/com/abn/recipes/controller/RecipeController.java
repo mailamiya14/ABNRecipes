@@ -1,6 +1,7 @@
 package com.abn.recipes.controller;
 
 import com.abn.recipes.model.Recipe;
+import com.abn.recipes.model.SearchCriteria;
 import com.abn.recipes.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,55 +9,64 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recipes")
+@RequestMapping("/api/recipes")
 public class RecipeController {
 
     @Autowired
     private RecipeService recipeService;
 
+    /**
+     * Get all recipes.
+     *
+     * @return List of recipes
+     */
     @GetMapping
     public List<Recipe> getAllRecipes() {
         return recipeService.getAllRecipes();
     }
 
+    /**
+     * Get all recipes.
+     *
+     * @return a recipes
+     */
     @GetMapping("/{id}")
     public Recipe getRecipeById(@PathVariable String id) {
         return recipeService.getRecipeById(id);
     }
 
-    @PostMapping
+    /**
+     * Get all recipes.
+     *
+     * @return List of recipes
+     */
+    @PostMapping("/add-recipe")
     public Recipe addRecipe(@RequestBody Recipe recipe) {
         return recipeService.addRecipe(recipe);
     }
 
+    /**
+     * Get all recipes.
+     *
+     * @return List of recipes
+     */
     @PutMapping("/{id}")
     public Recipe updateRecipe(@PathVariable String id, @RequestBody Recipe recipe) {
         return recipeService.updateRecipe(recipe);
     }
 
+    /**
+     * Get all recipes.
+     *
+     * @return List of recipes
+     */
     @DeleteMapping("/{id}")
     public void deleteRecipe(@PathVariable String id) {
         recipeService.deleteRecipe(id);
     }
-    @GetMapping("/vegetarian")
-    public List<Recipe> getVegetarianRecipes() {
-        return recipeService.getVegetarianRecipes();
-    }
 
-    @GetMapping("/servings/{servings}")
-    public List<Recipe> getRecipesByServings(@PathVariable int servings) {
-        return recipeService.getRecipesByServings(servings);
-    }
-
-    @GetMapping("/ingredients")
-    public List<Recipe> getRecipesByIngredients(
-            @RequestParam(required = false) List<String> include,
-            @RequestParam(required = false) List<String> exclude) {
-        return recipeService.getRecipesByIngredients(include, exclude);
-    }
-
-    @GetMapping("/instructions")
-    public List<Recipe> getRecipesByInstructions(@RequestParam String searchKeyword) {
-        return recipeService.getRecipesByInstructions(searchKeyword);
+    @PostMapping("/search-recipes")
+    public List<Recipe> searchRecipes(@RequestBody SearchCriteria criteria) {
+        return recipeService.searchRecipes(criteria);
     }
 }

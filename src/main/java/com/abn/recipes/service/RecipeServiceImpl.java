@@ -1,6 +1,7 @@
 package com.abn.recipes.service;
 
 import com.abn.recipes.model.Recipe;
+import com.abn.recipes.model.SearchCriteria;
 import com.abn.recipes.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,31 +44,19 @@ public class RecipeServiceImpl implements RecipeService {
         return false;
     }
     @Override
-    public List<Recipe> getVegetarianRecipes() {
-        return recipeRepository.findAll().stream()
-                .filter(Recipe::isVegetarian)
-                .collect(Collectors.toList());
-    }
+    public List<Recipe> searchRecipes(SearchCriteria criteria) {
+        // Fetch all recipes from the repository
+        List<Recipe> allRecipes = recipeRepository.findAll();
 
-    @Override
-    public List<Recipe> getRecipesByServings(int servings) {
-        return recipeRepository.findAll().stream()
-                .filter(recipe -> recipe.getServings() == servings)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Recipe> getRecipesByIngredients(List<String> includeIngredients, List<String> excludeIngredients) {
-        return recipeRepository.findAll().stream()
-                .filter(recipe -> includeIngredients.isEmpty() || recipe.getIngredients().containsAll(includeIngredients))
-                .filter(recipe -> excludeIngredients.isEmpty() || excludeIngredients.stream().noneMatch(recipe.getIngredients()::contains))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Recipe> getRecipesByInstructions(String searchKeyword) {
-        return recipeRepository.findAll().stream()
-                .filter(recipe -> recipe.getInstructions().contains(searchKeyword))
+        // Apply filtering based on the search criteria
+        return allRecipes.stream()
+                .filter(recipe ->
+                        (criteria.isVegetarian() == recipe.isVegetarian()) &&
+                                (criteria.getServings() <= 0 || recipe.getServings() == criteria.getServings()) &&
+                                (criteria.getIngredient() == null || recipe.getIngredients().contains(criteria.getIngredient())) &&
+                                (criteria.getExcludedIngredient() == null || !recipe.getIngredients().contains(criteria.getExcludedIngredient())) &&
+                                (criteria.getInstructionKeyword() == null || recipe.getInstructions().contains(criteria.getInstructionKeyword()))
+                )
                 .collect(Collectors.toList());
     }
 }

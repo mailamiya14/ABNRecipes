@@ -1,6 +1,7 @@
 package com.abn.recipes.service;
 
 import com.abn.recipes.model.Recipe;
+import com.abn.recipes.model.SearchCriteria;
 
 import java.util.List;
 
@@ -15,11 +16,7 @@ public interface RecipeService {
     Recipe updateRecipe(Recipe recipe);
 
     boolean deleteRecipe(String id);
-    List<Recipe> getVegetarianRecipes();
 
-    List<Recipe> getRecipesByServings(int servings);
+    List<Recipe> searchRecipes(SearchCriteria criteria);
 
-    List<Recipe> getRecipesByIngredients(List<String> includeIngredients, List<String> excludeIngredients);
-
-    List<Recipe> getRecipesByInstructions(String searchKeyword);
 }
