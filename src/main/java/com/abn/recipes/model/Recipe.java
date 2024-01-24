@@ -19,4 +19,16 @@ public class Recipe {
     private String instructions;
     private List<String> ingredients;
 
+    public Recipe(String id, String name, boolean vegetarian, int servings, List<String> ingredients, String instructions) {
+        this.id = id;
+        this.name = name;
+        this.vegetarian = vegetarian;
+        this.servings = servings;
+        this.ingredients = ingredients;
+        this.instructions = instructions;
+    }
+
+    public Recipe() {
+
+    }
 }

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Vegetarian Pasta",
+    "vegetarian": true,
+    "servings": 4,
+    "ingredients": ["pasta", "tomatoes", "olive oil"],
+    "instructions": "Boil pasta. Mix tomatoes and olive oil. Toss with pasta."
+  },
+  {
+    "name": "Chicken Stir Fry",
+    "vegetarian": false,
+    "servings": 3,
+    "ingredients": ["chicken", "vegetables", "soy sauce"],
+    "instructions": "Stir-fry chicken and vegetables. Add soy sauce. Serve hot."
+  },
+  {
+    "name": "Veggie Pizza",
+    "vegetarian": true,
+    "servings": 6,
+    "ingredients": ["pizza dough", "tomatoes", "bell peppers", "cheese"],
+    "instructions": "Spread pizza dough. Add toppings. Bake until cheese melts."
+  },
+  {
+    "name": "Salmon Salad",
+    "vegetarian": false,
+    "servings": 2,
+    "ingredients": ["salmon", "lettuce", "cucumber", "dressing"],
+    "instructions": "Grill salmon. Toss with lettuce, cucumber, and dressing."
+  },
+  {
+    "name": "Vegetable Curry",
+    "vegetarian": true,
+    "servings": 5,
+    "ingredients": ["potatoes", "carrots", "peas", "curry sauce"],
+    "instructions": "Cook vegetables in curry sauce. Serve with rice."
+  },
+  {
+    "name": "Spaghetti Bolognese",
+    "vegetarian": false,
+    "servings": 4,
+    "ingredients": ["spaghetti", "ground beef", "tomato sauce"],
+    "instructions": "Cook ground beef. Add tomato sauce. Serve over spaghetti."
+  },
+  {
+    "name": "Caprese Salad",
+    "vegetarian": true,
+    "servings": 3,
+    "ingredients": ["tomatoes", "mozzarella", "basil", "balsamic glaze"],
+    "instructions": "Layer tomatoes and mozzarella. Garnish with basil. Drizzle with balsamic glaze."
+  },
+  {
+    "name": "Shrimp Scampi",
+    "vegetarian": false,
+    "servings": 2,
+    "ingredients": ["shrimp", "garlic", "butter", "lemon"],
+    "instructions": "Sauté shrimp in garlic and butter. Squeeze lemon on top."
+  },
+  {
+    "name": "Quinoa Salad",
+    "vegetarian": true,
+    "servings": 6,
+    "ingredients": ["quinoa", "cucumber", "cherry tomatoes", "feta cheese"],
+    "instructions": "Cook quinoa. Mix with cucumber, cherry tomatoes, and feta cheese."
+  },
+  {
+    "name": "Beef Tacos",
+    "vegetarian": false,
+    "servings": 4,
+    "ingredients": ["ground beef", "taco shells", "lettuce", "salsa"],
+    "instructions": "Cook ground beef. Fill taco shells with beef, lettuce, and salsa."
+  }
+]

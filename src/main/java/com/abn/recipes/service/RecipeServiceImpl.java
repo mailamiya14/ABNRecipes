@@ -6,6 +6,7 @@ import com.abn.recipes.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,7 +48,6 @@ public class RecipeServiceImpl implements RecipeService {
     public List<Recipe> searchRecipes(SearchCriteria criteria) {
         // Fetch all recipes from the repository
         List<Recipe> allRecipes = recipeRepository.findAll();
-
         // Apply filtering based on the search criteria
         return allRecipes.stream()
                 .filter(recipe ->

@@ -1,6 +1,7 @@
 package com.abn.recipes.service;
 
 import com.abn.recipes.model.Recipe;
+import com.abn.recipes.model.SearchCriteria;
 import com.abn.recipes.repository.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,10 +10,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -40,15 +43,6 @@ class RecipeServiceTest {
         assertEquals(1, recipes.size());
     }
 
-    @Test
-    void getVegetarianRecipes() {
-        when(recipeRepository.findAll()).thenReturn(Collections.singletonList(createVegetarianRecipe()));
-
-        List<Recipe> vegetarianRecipes = recipeService.getVegetarianRecipes();
-
-        assertEquals(1, vegetarianRecipes.size());
-        assertEquals("Vegetarian Pasta", vegetarianRecipes.get(0).getName());
-    }
     @Test
     void updateRecipe() {
         Recipe existingRecipe = new Recipe();  // Existing recipe in the database
@@ -80,25 +74,44 @@ class RecipeServiceTest {
         verify(recipeRepository, times(1)).deleteById(recipeIdToDelete);
 
     }
-
     @Test
-    void getRecipesByServings() {
-        int servings = 4;
-        when(recipeRepository.findByServings(servings)).thenReturn(Collections.emptyList());
+    void testSearchRecipes_Vegetarian() {
+        Recipe recipe1 = new Recipe("1", "Vegetarian Pasta", true, 4, Arrays.asList("pasta", "tomatoes", "olive oil"), "Boil pasta. Mix tomatoes and olive oil. Toss with pasta.");
+        when(recipeRepository.findAll()).thenReturn(Arrays.asList(recipe1));
 
-        List<Recipe> recipes = recipeService.getRecipesByServings(servings);
+        List<Recipe> result = recipeService.searchRecipes(new SearchCriteria(true, 0, null, null, null));
 
-        assertNotNull(recipes);
-        assertTrue(recipes.isEmpty());
+        assertThat(result).containsExactly(recipe1);
+    }
+    @Test
+    void testSearchRecipes_ServingsAndIngredient() {
+        Recipe recipe1 = new Recipe("1", "Vegetarian Pasta", true, 4, Arrays.asList("pasta", "tomatoes", "olive oil"), "Boil pasta. Mix tomatoes and olive oil. Toss with pasta.");
+        Recipe recipe2 = new Recipe("2", "Chicken Stir Fry", false, 3, Arrays.asList("chicken", "vegetables", "soy sauce"), "Stir-fry chicken and vegetables. Add soy sauce. Serve hot.");
+        when(recipeRepository.findAll()).thenReturn(Arrays.asList(recipe1, recipe2));
+
+        List<Recipe> result = recipeService.searchRecipes(new SearchCriteria(false, 4, "rice", null, null));
+
+        assertThat(result).isEmpty();
     }
 
-    private Recipe createVegetarianRecipe() {
-        Recipe recipe = new Recipe();
-        recipe.setName("Vegetarian Pasta");
-        recipe.setVegetarian(true);
-        recipe.setServings(4);
-        recipe.setInstructions("Boil pasta, sauté vegetables, mix with sauce, and serve.");
-        recipe.setIngredients(List.of("pasta", "tomatoes", "spinach", "olive oil", "garlic"));
-        return recipe;
+    @Test
+    void testSearchRecipes_ExcludedIngredientAndInstructionKeyword() {
+        Recipe recipe1 = new Recipe("1", "Vegetarian Pasta", true, 4, Arrays.asList("pasta", "tomatoes", "olive oil"), "Boil pasta. Mix tomatoes and olive oil. Toss with pasta.");
+        Recipe recipe2 = new Recipe("2", "Chicken Stir Fry", false, 3, Arrays.asList("chicken", "vegetables", "soy sauce"), "Stir-fry chicken and vegetables. Add soy sauce. Serve hot.");
+        when(recipeRepository.findAll()).thenReturn(Arrays.asList(recipe1, recipe2));
+
+        List<Recipe> result = recipeService.searchRecipes(new SearchCriteria(false, 0, "pasta", "stir-fry", "chicken"));
+
+        assertThat(result).isEmpty(); // Expects an empty list because both recipes do not match the criteria.
+    }
+    @Test
+    void testSearchRecipes_ExcludedIngredientAndInstructionKeyword_CorrectRecipeReturned() {
+        Recipe recipe1 = new Recipe("1", "Vegetarian Pasta", true, 4, Arrays.asList("pasta", "tomatoes", "olive oil"), "Boil pasta. Mix tomatoes and olive oil. Toss with pasta.");
+        Recipe recipe2 = new Recipe("2", "Chicken Stir Fry", false, 3, Arrays.asList("chicken", "vegetables", "soy sauce"), "Stir-fry chicken and vegetables. Add soy sauce. Serve hot.");
+        when(recipeRepository.findAll()).thenReturn(Arrays.asList(recipe1, recipe2));
+
+        List<Recipe> result = recipeService.searchRecipes(new SearchCriteria(false, 0, "chicken", "stir-fry", "chicken"));
+
+        assertThat(result).containsExactly(recipe2); // Expects recipe2 to be returned as it matches the criteria.
     }
 }
