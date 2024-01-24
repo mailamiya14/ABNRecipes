@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -29,13 +30,44 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe updateRecipe(String id, Recipe recipe) {
-        recipe.setId(id);
+    public Recipe updateRecipe(Recipe recipe) {
         return recipeRepository.save(recipe);
     }
 
     @Override
-    public void deleteRecipe(String id) {
-        recipeRepository.deleteById(id);
+    public boolean deleteRecipe(String recipeId) {
+        if (recipeRepository.existsById(recipeId)) {
+            recipeRepository.deleteById(recipeId);
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public List<Recipe> getVegetarianRecipes() {
+        return recipeRepository.findAll().stream()
+                .filter(Recipe::isVegetarian)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Recipe> getRecipesByServings(int servings) {
+        return recipeRepository.findAll().stream()
+                .filter(recipe -> recipe.getServings() == servings)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Recipe> getRecipesByIngredients(List<String> includeIngredients, List<String> excludeIngredients) {
+        return recipeRepository.findAll().stream()
+                .filter(recipe -> includeIngredients.isEmpty() || recipe.getIngredients().containsAll(includeIngredients))
+                .filter(recipe -> excludeIngredients.isEmpty() || excludeIngredients.stream().noneMatch(recipe.getIngredients()::contains))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Recipe> getRecipesByInstructions(String searchKeyword) {
+        return recipeRepository.findAll().stream()
+                .filter(recipe -> recipe.getInstructions().contains(searchKeyword))
+                .collect(Collectors.toList());
     }
 }

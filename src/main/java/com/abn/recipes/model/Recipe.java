@@ -4,8 +4,10 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
-@Document(collection = "recipes")
+@Document(collection = "recipe")
 public class Recipe {
 
     @Id
@@ -15,5 +17,6 @@ public class Recipe {
     private boolean vegetarian;
     private int servings;
     private String instructions;
+    private List<String> ingredients;
 
 }

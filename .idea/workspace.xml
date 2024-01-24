@@ -4,26 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ab648be-7fda-41dc-a936-c07358485805" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/RecipiesApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/controller/RecipeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/model/Recipe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/repository/RecipeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/service/RecipeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/service/RecipeServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/abn/recipes/service/RecipeServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/abn/recipies/RecipiesApplicationTests.java" afterDir="false" />
+    <list default="true" id="3ab648be-7fda-41dc-a936-c07358485805" name="Changes" comment="initial commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/abn/recipes/controller/RecipeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/controller/RecipeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/abn/recipes/model/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/model/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/abn/recipes/repository/RecipeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/repository/RecipeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/abn/recipes/service/RecipeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/service/RecipeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/abn/recipes/service/RecipeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/abn/recipes/service/RecipeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/abn/recipes/service/RecipeServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/abn/recipes/service/RecipeServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,9 +58,9 @@
       <recent name="com.abn.recipes" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RecipeServiceTest">
-    <configuration name="RecipiesApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.abn.recipes.RecipiesApplication" />
+  <component name="RunManager" selected="JUnit.RecipeServiceTest.deleteRecipe">
+    <configuration name="RecipesApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.abn.recipes.RecipesApplication" />
       <module name="recipies" />
       <extension name="coverage">
         <pattern>
@@ -98,6 +87,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RecipeServiceTest.deleteRecipe" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="recipies" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.abn.recipes.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.abn.recipes.service" />
+      <option name="MAIN_CLASS_NAME" value="com.abn.recipes.service.RecipeServiceTest" />
+      <option name="METHOD_NAME" value="deleteRecipe" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RecipeServiceTest.getAllRecipes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="recipies" />
       <extension name="coverage">
@@ -116,9 +121,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RecipeServiceTest.deleteRecipe" />
         <item itemvalue="JUnit.RecipeServiceTest" />
+        <item itemvalue="Application.RecipesApplication" />
         <item itemvalue="JUnit.RecipeServiceTest.getAllRecipes" />
-        <item itemvalue="Application.RecipiesApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -131,6 +137,15 @@
       <option name="presentableId" value="Default" />
       <updated>1706091769153</updated>
     </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <option name="closed" value="true" />
+      <created>1706094014931</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706094014931</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -142,5 +157,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
   </component>
 </project>

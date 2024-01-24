@@ -12,7 +12,14 @@ public interface RecipeService {
 
     Recipe addRecipe(Recipe recipe);
 
-    Recipe updateRecipe(String id, Recipe recipe);
+    Recipe updateRecipe(Recipe recipe);
 
-    void deleteRecipe(String id);
+    boolean deleteRecipe(String id);
+    List<Recipe> getVegetarianRecipes();
+
+    List<Recipe> getRecipesByServings(int servings);
+
+    List<Recipe> getRecipesByIngredients(List<String> includeIngredients, List<String> excludeIngredients);
+
+    List<Recipe> getRecipesByInstructions(String searchKeyword);
 }
