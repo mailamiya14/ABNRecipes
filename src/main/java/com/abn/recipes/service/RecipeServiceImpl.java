@@ -49,21 +49,6 @@ public class RecipeServiceImpl implements RecipeService {
     }
     @Override
     public List<Recipe> searchRecipes(SearchCriteria criteria) {
-//           // Fetch all recipes from the repository
-//           List<Recipe> allRecipes = recipeRepository.findAll();
-//           // Apply filtering based on the search criteria
-//           List<Recipe> result = allRecipes.stream()
-//                   .filter(recipe ->
-//                           (criteria.isVegetarian() == recipe.isVegetarian()) &&
-//                                   (criteria.getServings() <= 0 || recipe.getServings() == criteria.getServings()) &&
-//                                   (criteria.getIngredient() == null || recipe.getIngredients().contains(criteria.getIngredient())) &&
-//                                   (criteria.getExcludedIngredient() == null || !recipe.getIngredients().contains(criteria.getExcludedIngredient())) &&
-//                                   (criteria.getInstructionKeyword() == null || recipe.getInstructions().contains(criteria.getInstructionKeyword()))
-//                   )
-//                   .toList();
-//            if (result.isEmpty())
-//                throw new RecipeNotFoundException("No Recipe found for the search criteria");
-//           return result;
 
         Criteria criteriaObject = new Criteria();
 
